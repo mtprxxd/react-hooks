@@ -5,7 +5,7 @@ import App from './App.jsx'
 // function MyApp(){
 //     return (
 //         <div>
-//             <h1>Custom App | pune</h1>
+//             <h1>Custom App | punea</h1>
 //         </div>
 //     )
 // }
