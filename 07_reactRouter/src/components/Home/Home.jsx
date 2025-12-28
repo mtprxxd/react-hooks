@@ -1,5 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+// import remote1 from "../../assets/remote1.png";
+import remote2 from "../../assets/remote2.png"
+import company from "../../assets/company.png";
+
 
 export default function Home() {
     return (
@@ -9,7 +13,7 @@ export default function Home() {
                     <div className="max-w-xl sm:mt-1 mt-80 space-y-8 text-center sm:text-right sm:ml-auto">
                         <h2 className="text-4xl font-bold sm:text-5xl">
                             Download Now
-                            <span className="hidden sm:block text-4xl">Lorem Ipsum</span>
+                            <span className="hidden sm:block text-4xl">The Camp</span>
                         </h2>
 
                         <Link
@@ -20,7 +24,7 @@ export default function Home() {
                                 fill="white"
                                 width="24"
                                 height="24"
-                                xmlns="https://svgsilh.com/image/2056977.html"
+                                xmlns="http://www.w3.org/2000/svg"
                                 fillRule="evenodd"
                                 clipRule="evenodd"
                             >
@@ -32,15 +36,15 @@ export default function Home() {
                 </div>
 
                 <div className="absolute inset-0 w-full sm:my-20 sm:pt-1 pt-12 h-full ">
-                    <img className="w-96" src="https://i.ibb.co/5BCcDYB/Remote2.png" alt="image1" />
+                    <img className="w-96" src={company} alt="image1" />
                 </div>
             </aside>
 
             <div className="grid  place-items-center sm:mt-20">
-                <img className="sm:w-96 w-48" src="https://svgsilh.com/image/2056977.htmlhttps://pixabay.com/images/search/png%20logo/" alt="image2" />
+                <img className="sm:w-96 w-48" src={remote2} alt="image2" />
             </div>
 
-            <h1 className="text-center text-2xl sm:text-5xl py-10 font-medium">Lorem Ipsum Yojo</h1>
+            <h1 className="text-center text-2xl sm:text-5xl py-10 font-medium">Join Us</h1>
         </div>
     );
 }
