@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react'
+// import React, { useEffect, useState } from 'react'
+import { useLoaderData } from 'react-router-dom'
 
 function Github() {
-  const [data, setData] = useState({})
+  const data = useLoaderData()
+  // const [data, setData] = useState({})
 
-  useEffect(() => {
-    fetch('https://api.github.com/users/mtprxxd')
-      .then(res => res.json())
-      .then(data => {
-        console.log(data)
-        setData(data)
-      })
-  }, [])
+  // useEffect(() => {
+  //   fetch('https://api.github.com/users/mtprxxd')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       console.log(data)
+  //       setData(data)
+  //     })
+  // }, [])
 
   return (
     <div className='text-center text-3xl bg-gray-200 text-black p-4'>
@@ -21,3 +23,11 @@ function Github() {
 }
 
 export default Github
+
+export const githubInfoLoader = async () => {
+  const res = await fetch('https://api.github.com/users/mtprxxd')
+  // console.log(githubInfoLoader)
+  return res.json()
+}
+
+
