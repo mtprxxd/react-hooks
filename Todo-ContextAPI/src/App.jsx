@@ -55,10 +55,12 @@ function App() {
 
   // LOCAL STORAGE ME DATA SAVE KARNE KE LIYE USEEFFECT KA USE KAR SAKTE H AISE
 
-  useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem('todos'))
-    if (storedTodos && storedTodos.length > 0 ) {
-      setTodos(storedTodos)
+  
+   useEffect(() => {
+    const todos = JSON.parse(localStorage.getItem("todos"))
+
+    if (todos && todos.length > 0) {
+      setTodos(todos)
     }
   }, [])
 
@@ -81,6 +83,12 @@ function App() {
                     <div className="flex flex-wrap gap-y-3">
                         {/*Loop and Add TodoItem here */}
                         {/* <Items /> */}
+                        {todos.map((todo) => (
+                          <div key={todo.id} todo={todo} 
+                            className='w-full'>
+                              <Items />
+                          </div>
+                        ))}
                     </div>
                 </div>
             </div>
