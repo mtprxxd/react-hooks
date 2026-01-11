@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
-
 import './App.css'
-import Form from './components/Form'
-import Items from './components/Items'
+import Form from './components/Form.jsx'
+import Items from './components/Items.jsx'
 import { TodoProvider } from './context/TodoContext'
 
 function App() {
@@ -10,7 +9,7 @@ function App() {
 
 
   // addTodo <useState[]> array me add hojaaega
-  const addTodo = (todo) => {
+  const addTodo = (todo_title) => {
     // purane array me saari value delete karke naya todo add kar dega
     // purani saari values delete nhi karni h isliye hum prevTodos/prev/oldPrev ka use karenge 
     // <...prevTodos> se purane saare todos ka access mil jaata h
@@ -18,20 +17,20 @@ function App() {
     // setTodos((prevTodos) => [...prevTodos, todo]) 
     // yha hum bs <todo> ko pass nhi kr skte qki humne vo define nhi kia h kahi bhi , to hum yha ek todo bnaenge as an Object so that we can have id, todo text and completed status 
     setTodos((prevTodos) => [...prevTodos, {
-      id: Date.now(),...todo}])
+      id: Date.now(),...todo_title}])
   }
 
 
 
-  const updateTodo = (id, todo) => {
+  const updateTodo = (id, todo_title) => {
     // todos hmara ek array h jisme saare todo objects h
     // map se hum us array ke saare todos mil jaaenge or saare todos ko iterate karenge
     // <prevTodo> se humein ek ek todo milega
     // agar jo todo hm update karna chahte h uski id mil jaati h to usko naya todo de denge
     // agar id match nhi karti to purana todo hi rehne denge
     setTodos((prevTodos) =>
-      prevTodos.map((prevTodo) => (prevTodo.id === id ? todo : prevTodo))
-    // <prevTodo.id> se humein har todo ka id milega Or <id> se humein wo id milegi jisko hm update karna chahte h
+      prevTodos.map((individualTodo) => (individualTodo.id === id ? todo_title : individualTodo))
+    // <individualTodo.id> se humein har todo ka id milega Or <id> se humein wo id milegi jisko hm update karna chahte h
     )
   }
 
@@ -39,30 +38,24 @@ function App() {
 
   const removeTodo = (id) => {
     // previos Array me se jo id delete karni h usko filter kar denge or baaki saare todos ko naya array bana ke return kar denge
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id))
+    setTodos((prevTodos) => prevTodos.filter((todo_title) => todo_title.id !== id))
   }
 
 
   const toggleTodo = (id) => {
     setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
-        // <...todo> se saari values ka access mil jaata hai or complete ko overwrite kar deta h
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
-      )
-    )
-  }
-
+      prevTodos.map((individualTodo) => individualTodo.id === id ? {...individualTodo, completed: !individualTodo.completed} : individualTodo ))}
 
   // LOCAL STORAGE ME DATA SAVE KARNE KE LIYE USEEFFECT KA USE KAR SAKTE H AISE
 
   
    useEffect(() => {
-    const todos = JSON.parse(localStorage.getItem("todos"))
+    const Todos = JSON.parse(localStorage.getItem("todos"))
 
-    if (todos && todos.length > 0) {
-      setTodos(todos)
+    if (Todos && Todos.length > 0) {
+      setTodos(Todos)
     }
-  }, [])
+  },[])
 
   // Multiple useEffect ho sakte h react me
 // DATA LOCAL STORAGE ME SAVE KARNE KE LIYE
@@ -83,10 +76,10 @@ function App() {
                     <div className="flex flex-wrap gap-y-3">
                         {/*Loop and Add TodoItem here */}
                         {/* <Items /> */}
-                        {todos.map((todo) => (
-                          <div key={todo.id} todo={todo} 
+                        {todos.map((todo_title) => (
+                          <div key={todo_title.id}  
                             className='w-full'>
-                              <Items />
+                              <Items todo={todo_title} />
                           </div>
                         ))}
                     </div>
@@ -95,5 +88,6 @@ function App() {
     </TodoProvider>
   )
 }
+
 
 export default App
