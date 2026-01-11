@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { TodoProvider } from './contexts'
 import Form from './components/Form.jsx'
+import Item from './components/Item.jsx'
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
   }
 
   const checkTodo = (id) => {
-    setTodos((prevTodos) => prevTodos.map((individualTodo) => individualTodo.id === id ? {...individualTodo, complete: !individualTodo.complete } : individualTodo))
+    setTodos((prevTodos) => prevTodos.map((individualTodo) => individualTodo.id === id ? {...individualTodo, completed: !individualTodo.completed } : individualTodo))
 
   }
 
@@ -55,6 +56,12 @@ function App() {
                     </div>
                     <div className="flex flex-wrap gap-y-3">
                         {/*Loop and Add TodoItem here */}
+                        {todos.map((todo_msg) => (
+                          <div key={todo_msg.id}
+                          className = "w-full">
+                            <Item todo = {todo_msg} />
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
